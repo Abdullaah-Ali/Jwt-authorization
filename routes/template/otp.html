@@ -61,7 +61,8 @@
 <body>
     <div class="container">
         <h2>OTP Verification</h2>
-        <form id="otpForm" action="/verify-otp" method="POST">
+        <form id="otpForm" action="/signup/verify-otp" method="POST">
+
             <input type="hidden" id="email" name="email" value="<%= email %>">
             <div class="form-group">
                 <label for="otpverification">Enter OTP:</label>

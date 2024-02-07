@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 const port = 3000;
 const loginRoute = require('./routes/login');
 const signupRoute = require('./routes/signup');
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
 
 // Middleware to parse JSON
 app.use(express.json());
