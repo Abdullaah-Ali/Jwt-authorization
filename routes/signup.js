@@ -34,6 +34,18 @@ const userSchema  = new mongoose.Schema({
         required: true,
         minlength: 6
     },
+    isUserVerified:{
+        type : Boolean,
+        default : false
+    },
+    otpCreation:{
+        type:Date,
+        default : null},
+
+
+    otpExpiresAt:{
+        type:Date,
+        default : null},
 
     createdAt:{
         type:Date, 
@@ -61,11 +73,13 @@ try {
     }
     const newUser = new User ({name , email , password}) 
     await newUser.save()
-    res.status(201).json({ message: 'User registered successfully' });
+    
 
     const otp = otpGenerator.generate(6, { upperCaseAlphabets: true, specialChars: true });
     await sendEmail(email, 'Your OTP verification code is',  otp); // Replace '123456' with the actual OTP
     
+    return res.redirect(`signup/verify-otp?email=${email}`);
+
 
 
     }
@@ -77,6 +91,28 @@ catch(error){
 });
 
 
+
+router.route('/verify-otp')
+    .get((req, res) => {
+        // Your logic for handling GET requests
+        res.sendFile(path.join(__dirname, 'template', 'otp.html'));
+    })
+    .post(async (req, res) => {
+        try {
+            const { email, otpverification } = req.body;
+            const user = await User.findOne({ email });
+            if (user && otpverification === otpverification) {
+                user.verified = true;
+                await user.save();
+                return res.redirect('/login');
+            } else {
+                return res.redirect('/signup');
+            }
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ message: 'Internal server error' });
+        }
+    });
 
 
 

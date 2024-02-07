@@ -7,6 +7,8 @@ const signupRoute = require('./routes/signup');
 
 // Middleware to parse JSON
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 mongoose.set('strictQuery', false);
 
 // Use the routes
