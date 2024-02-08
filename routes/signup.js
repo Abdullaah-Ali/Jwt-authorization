@@ -59,7 +59,7 @@ const userSchema  = new mongoose.Schema({
     }
 })
 //user mnodel
-const User = mongoose.model('User',userSchema)
+const User = mongoose.model('User', userSchema);
 
 
 // Signup route - POST
@@ -133,12 +133,8 @@ catch(error){
 
 
 
+
 router.route('/verify-otp')
-    .get((req, res) => {
-        // Your logic for handling GET requests
-        res.sendFile(path.join(__dirname, 'template', 'otp.html'));
-    })
-    router.route('/verify-otp')
     .get((req, res) => {
         // Your logic for handling GET requests
         res.sendFile(path.join(__dirname, 'template', 'otp.html'));
@@ -213,5 +209,6 @@ async function sendEmail(to,text,otp) {
 
 
 
+// module.exports = router;
+module.exports = User;
 
-module.exports = router;
