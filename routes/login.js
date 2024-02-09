@@ -26,7 +26,7 @@ router.route('/')
             const token = jwt.sign({
                 email: user.email,
                 name: user.name
-            }, 'secret123', { expiresIn: '20s' });
+            }, 'secret123', { expiresIn: '1h' });
 
             console.log(token);
             return res.cookie('jwtToken', token, { 

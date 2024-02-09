@@ -207,6 +207,6 @@ async function sendEmail(to,text,otp) {
     }
 }
 
-
+module.exports = router;
 module.exports = User;
 
