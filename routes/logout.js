@@ -1,0 +1,1 @@
+//as the user logout from the page make sure to clear the cookies of jwt so that user needs to refresh the token thru login as per the co incidet that user might wanna come with the new acces and so whatever 
